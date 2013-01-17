@@ -1,0 +1,23 @@
+<ul class="catalogs-list">
+	<% @catalogs.each do |catalog| %>
+	<li class="catalogs-item">
+		<h3><a href="/c/<%= catalog.cid %>"><%= catalog.name %></a></h3>
+		<% if catalog.hots && catalog.hots != '' %>
+		<h5>热门搜索：</h5>
+		<ul class="clearfix">
+			<%= catalog.hots.to_s.split(',').map{|c|"<li><a href='/q/#{c}?cid=#{catalog.cid}'>#{c}</a></li>"}.join('').html_safe %>
+		</ul>
+		<% end %>
+		<% if catalog.children.length > 0 %>
+		<h5>二级分类：</h5>
+		<ul class="clearfix">
+			<% catalog.children.each do |cat| %>
+			<li>
+				<a href="/c/<%= cat.cid %>"><%= cat.name %></a>
+			</li>
+			<% end %>
+		</ul>
+		<% end %>
+	</li>
+	<% end %>
+</ul>

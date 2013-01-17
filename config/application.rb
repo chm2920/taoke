@@ -60,3 +60,5 @@ module Taobaoke
     config.assets.version = '1.0'
   end
 end
+
+APP_CONFIG = YAML.load_file("#{Rails.root}/config/config.yml")[Rails.env]

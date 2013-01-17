@@ -1,0 +1,35 @@
+<div class="page_location">
+	搜索<span>“<b><%= @keyword %></b>”</span>：
+</div>
+<div class="clearfix" style="margin-top:18px;">
+	<div class="l_cat_list">
+		<h2>店铺推荐</h2>
+		<ul>
+			<% @shops && @shops.each do |shop| %>
+			<li><a href="<%= shop["click_url"] %>" title="<%= shop["shop_title"] %>"><%= shop["shop_title"] %></a>
+				<p><img src="/assets/credit/level_<%= shop["seller_credit"] %>.gif" /></p>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+	<div class="get_show">
+		<% if @result != 'error' %>
+		<ul class="items_list clearfix">
+			<% for item in @result %>
+			<li>
+				<a href="/p/<%= item["num_iid"] %>" target="_self"><img src="<%= item["pic_url"] %>" class="pimg" /></a>
+				<p class="title"><a href="/p/<%= item["num_iid"] %>" target="_self"><%= show_title item["title"] %></a></p>
+				<p><span>月销<b class="volume"><%= item["volume"] %></b></span>¥<b class="price"><%= item["price"] %></b></p>
+				<p>
+					<span><a class="lsg" target="_blank" href="<%= item["click_url"] %>">购买</a></span>
+					<a href="<%= item["shop_click_url"] %>" target="_blank"><span><img src="/assets/credit/level_<%= item["seller_credit_score"] %>.gif" /></span><%= item["nick"] %></a>
+				</p>
+			</li>
+			<% end %>
+		</ul>
+		<div class="pagination"><%= well_paginate @total.to_i, @page, @per_page, @keyword %></div>
+		<% else %>
+		<p style="padding:50px 0 0 40px;">抱歉，暂时没有结果。</p>
+		<% end %>
+	</div>
+</div>
