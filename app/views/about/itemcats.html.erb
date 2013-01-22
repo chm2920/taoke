@@ -1,9 +1,0 @@
-<% if @result.nil? %>
-	<p>没有内容。</p>
-<% else %>
-	<ul class="itemcats">
-	<% @result.each do |cat| %>
-	<li><a href="/ct/<%= cat["cid"] %>"><%= cat["name"]%></a></li>
-	<% end %>
-	</ul>
-<% end %>
