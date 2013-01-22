@@ -29,26 +29,6 @@ module ApplicationHelper
     arr.join('').html_safe
   end
   
-  def c_paginate(total, page, per_page, cid)
-    if total > 500
-      maxpage = 19
-    else
-      maxpage, m = total.divmod per_page
-      if m != 0
-        maxpage += 1
-      end
-    end
-    arr = []
-    1.upto maxpage-1 do |i|
-      if i == page
-        arr << "<em>#{i}</em>"
-      else
-        arr << "<a href='/c/#{cid}?page=#{i}'>#{i}</a>"
-      end
-    end
-    arr.join('').html_safe
-  end
-  
   def ct_paginate(total, page, per_page, cid)
     if total > 500
       maxpage = 19
@@ -64,26 +44,6 @@ module ApplicationHelper
         arr << "<em>#{i}</em>"
       else
         arr << "<a href='/ct/#{cid}?page=#{i}'>#{i}</a>"
-      end
-    end
-    arr.join('').html_safe
-  end
-  
-  def apis_ct_paginate(total, page, per_page, cid)
-    if total > 500
-      maxpage = 19
-    else
-      maxpage, m = total.divmod per_page
-      if m != 0
-        maxpage += 1
-      end
-    end
-    arr = []
-    1.upto maxpage-1 do |i|
-      if i == page
-        arr << "<em>#{i}</em>"
-      else
-        arr << "<a href='/apis/ct/#{cid}?page=#{i}'>#{i}</a>"
       end
     end
     arr.join('').html_safe

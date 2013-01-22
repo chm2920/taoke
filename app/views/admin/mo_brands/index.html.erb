@@ -1,0 +1,53 @@
+<%= form_tag({:action => "index"}, {:id => "vbform"}) do %>	
+<table class="stdtable">
+	<colgroup>
+		<col style="width: 10%" />
+		<col style="width: 70%" />
+		<col style="width: 20%" />
+	</colgroup>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>标题</th>
+			<th>管理</th>
+		</tr>
+	</thead>
+	<%
+		if @mo_brands.length > 0
+	%>
+	<tbody>
+	<%
+			@mo_brands.each do |mo_brand|
+	%>
+		<tr>
+			<td><%= check_box_tag 'mo_brand_ids[]', mo_brand.id, false, :class => 'checker' %></td>
+			<td><%= mo_brand.name %></td>
+			<td>
+				<a href="/admin/mo_brands/<%= mo_brand.id %>/edit">修改</a>|<%= link_to "删除", {:action => "destroy", :id => mo_brand}, :confirm => "确定删除？", :method => "delete" %>
+			</td>
+		</tr>
+	<%
+			end
+	%>
+	</tbody>
+	<%
+		else
+	%>
+	<tbody>
+		<tr>
+			<td colspan="3" style="text-align:left;">&nbsp;还没有内容。</td>
+		</tr>
+	</tbody>
+	<%
+		end
+	%>
+</table>
+<div class="list-opts clearfix">
+	<div class="l">
+		<input type="button" name="selectAll" id="selectAll" value="全选">
+		<input type="button" name="selectOther" id="selectOther" value="反选">
+		<input type="submit" name="delete_all" id="delete_all" value="全部删除">
+	</div>
+	<%= will_paginate @mo_brands %>
+</div>
+<% end %>

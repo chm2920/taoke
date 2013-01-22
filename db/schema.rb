@@ -11,6 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20130121144255) do
+
+  create_table "admins", :force => true do |t|
+    t.string   "adminname"
+    t.string   "password"
+    t.string   "level"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "kindeditor_assets", :force => true do |t|
+    t.string   "asset"
+    t.string   "file_name"
+    t.integer  "file_size"
+    t.string   "file_type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "mo_brands", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "run_logs", :force => true do |t|
+    t.string   "log_path"
+    t.string   "log_method"
+    t.string   "log_params"
+    t.string   "log_exception"
+    t.string   "log_remote_ip"
+    t.datetime "created_at"
+  end
 
 end

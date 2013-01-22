@@ -1,0 +1,10 @@
+<%= form_for [:admin, @mo_brand] do |f| %>
+<table class="newtable">
+	<thead>
+		<tr>
+			<th colspan="2">新增</th>
+		</tr>
+	</thead>
+	<%= render :partial => 'form', :locals => { :f => f } %>
+</table>
+<% end %>
